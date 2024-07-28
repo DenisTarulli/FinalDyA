@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float extraRayHeight;
     private Vector2 moveDirection;
@@ -28,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
             Jump();
     }
 
+    private void FixedUpdate()
+    {
+        GravityCompensation();
+    }
+
     private void Movement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -39,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite()
     {
+        if (PlayerCombat.isAttacking) return;
+
         if (moveDirection.x > 0f)
             transform.localScale = Vector3.one;
         else if (moveDirection.x < 0f)
@@ -57,6 +65,13 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, extraRayHeight, groundLayer);
 
         return raycastHit.collider != null;
+    }
+
+    private void GravityCompensation()
+    {    
+        if (!IsGrounded())
+            rb.AddForce(Vector2.down * gravityMultiplier, ForceMode2D.Force);
+    
     }
 
     private void SetAnimations()
