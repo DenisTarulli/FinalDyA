@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,25 +7,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackHitDelay;
     [SerializeField] private float extraDelayUntilSpriteFlip;
     [SerializeField] private float attackRange;
-    [SerializeField] private int maxHealth;
     [SerializeField] private int damage;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
     private Animator animator;
-    private int currentHealth;
     private float nextTimeToAttack;
 
     public static bool isAttacking;
 
-    public static event Action<float> OnHurt;
-
-    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
-
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-    }
+    [SerializeField] private PlayerStatsScriptableObject playerStats;
 
     private void Start()
     {
@@ -67,12 +56,13 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damageToTake)
     {
-        currentHealth -= damageToTake;
+        playerStats.DecreaseHealth(damageToTake);
 
-        OnHurt?.Invoke(currentHealth);
-
-        if (currentHealth <= 0)
+        if (playerStats.currentHealth <= 0)
+        {
+            GameManager.Instance.GameOver();
             Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()

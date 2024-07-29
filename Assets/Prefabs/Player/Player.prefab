@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8286167898311928363}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749fedd8625b8334e9e8353d6c2fe2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 3.5
   jumpForce: 8.5
   gravityMultiplier: 5
   groundLayer:
@@ -144,12 +144,12 @@ MonoBehaviour:
   attackHitDelay: 0.27
   extraDelayUntilSpriteFlip: 0.17
   attackRange: 0.7
-  maxHealth: 100
   damage: 27
   attackPoint: {fileID: 8792393751218068363}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
+  playerStats: {fileID: 11400000, guid: 22bdc5886cbbd114496053b350d0b43b, type: 2}
 --- !u!1 &2733530480813817859
 GameObject:
   m_ObjectHideFlags: 0

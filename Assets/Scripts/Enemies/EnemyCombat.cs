@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyCombat : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float extraDelayUntilSpriteFlip;
+    [SerializeField] private int scoreValue;
+    [SerializeField] private GameObject canvas;
     private Animator animator;
     private float nextTimeToAttack;
     private float distanceToPlayer;
@@ -19,6 +22,9 @@ public class EnemyCombat : MonoBehaviour
     private bool isAttacking;
     private Transform playerPosition;
     private EnemyHealthBar healthBar;
+    private Vector2 toPlayerDirection;
+
+    [SerializeField] private PlayerStatsScriptableObject playerStats;
 
     private void Start()
     {
@@ -33,6 +39,9 @@ public class EnemyCombat : MonoBehaviour
     private void Update()
     {
         if (playerPosition == null) return;
+
+        toPlayerDirection = playerPosition.position - transform.position;
+        FlipSprite();
 
         distanceToPlayer = Vector2.Distance(transform.position, playerPosition.position);
         
@@ -88,11 +97,30 @@ public class EnemyCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    private void FlipSprite()
+    {
+        if (isAttacking) return;
+
+        if (toPlayerDirection.x < 0f)
+        {
+            transform.localScale = Vector3.one;
+            canvas.transform.localScale = new(0.01f, 0.01f, 0.01f);
+        }
+        else if (toPlayerDirection.x > 0f)
+        {
+            transform.localScale = new(-1f, 1f, 1f);
+            canvas.transform.localScale = new(-0.01f, 0.01f, 0.01f);
+        }
+    }
+
     private void Die()
     {
         animator.SetTrigger("Die");
 
+        StopAllCoroutines();
         healthBar.enabled = false;
+
+        playerStats.IncreaseScore(scoreValue);
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

@@ -1885,7 +1885,6 @@ GameObject:
   - component: {fileID: 933955160}
   - component: {fileID: 933955162}
   - component: {fileID: 933955161}
-  - component: {fileID: 933955163}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: Untagged
@@ -2005,18 +2004,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &933955163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933955159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3710dfe3147e5224f9842e2479cafa29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &958440358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,7 +2578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7859251108610755980, guid: a0d04db732ff92b49b930da232c64e2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 7859251108610755980, guid: a0d04db732ff92b49b930da232c64e2a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3395,7 +3382,7 @@ MonoBehaviour:
   playerUI: {fileID: 238150528}
   scoreText: {fileID: 1415397741}
   sceneFader: {fileID: 1434399199}
-  nextLevelScene: Level02
+  nextLevelScene: Level04
   collectibles: {fileID: 1086515964}
   playerStats: {fileID: 11400000, guid: 22bdc5886cbbd114496053b350d0b43b, type: 2}
   gameIsOver: 0

@@ -115,6 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedEffect: {fileID: 5153815061406935337, guid: de246dcda3ca73a418cd18d1fcb6174b, type: 3}
   collectedEffectDuration: 1
+  scoreValue: 325
+  playerStats: {fileID: 11400000, guid: 22bdc5886cbbd114496053b350d0b43b, type: 2}
 --- !u!1 &4502598358301424175
 GameObject:
   m_ObjectHideFlags: 0

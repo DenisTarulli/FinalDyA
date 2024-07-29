@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damage: 20
-  attackRange: 1.05
+  damage: 18
+  attackRange: 1.4
   attackHitDelay: 0.6
   attackTriggerDistance: 2.3
   attackPoint: {fileID: 583838455080376980}
@@ -268,7 +268,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackSpeed: 0.45
-  extraDelayUntilSpriteFlip: 0.17
+  extraDelayUntilSpriteFlip: 0.25
+  scoreValue: 225
+  canvas: {fileID: 3571023470198108193}
+  playerStats: {fileID: 11400000, guid: 22bdc5886cbbd114496053b350d0b43b, type: 2}
 --- !u!114 &4943026079952423972
 MonoBehaviour:
   m_ObjectHideFlags: 0

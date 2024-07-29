@@ -6,6 +6,8 @@ public class PlayerHealthUI : MonoBehaviour
     private Slider playerHealthBar;
     private PlayerCombat player;
 
+    [SerializeField] private PlayerStatsScriptableObject playerStats;    
+
     private void Start()
     {
         player = FindObjectOfType<PlayerCombat>();
@@ -15,22 +17,22 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void SetMaxHealth()
     {
-        playerHealthBar.maxValue = player.MaxHealth;
-        playerHealthBar.value = player.CurrentHealth;
+        playerHealthBar.maxValue = playerStats.maxHealth;
+        playerHealthBar.value = playerStats.currentHealth;
     }
 
-    private void SetHealth(float health)
+    public void SetHealth(int health)
     {
         playerHealthBar.value = health;
     }
 
     private void OnEnable()
     {
-        PlayerCombat.OnHurt += SetHealth;
+        playerStats.OnHealthUpdate.AddListener(SetHealth);
     }
 
     private void OnDisable()
     {
-        PlayerCombat.OnHurt -= SetHealth;
+        playerStats.OnHealthUpdate.RemoveListener(SetHealth);
     }
 }

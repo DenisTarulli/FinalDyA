@@ -7,16 +7,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject winText;
-    [SerializeField] private GameObject loseText;
+    [SerializeField] private GameObject playerUI;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    private int score;
 
-    private PlayerCombat player;
+    [SerializeField] private SceneFader sceneFader;
+
     [SerializeField] private string nextLevelScene;
     [SerializeField] private Transform collectibles;
     private int totalCollectibles;
+
+    [SerializeField] private PlayerStatsScriptableObject playerStats;
 
     public bool gameIsOver;
 
@@ -34,8 +35,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         totalCollectibles = collectibles.childCount;
-
-        player = FindObjectOfType<PlayerCombat>();
+        UpdateScoreText(playerStats.score);
     }
 
     private void OnDestroy()
@@ -52,24 +52,27 @@ public class GameManager : MonoBehaviour
 
     private void RestartLevel()
     {
+        playerStats.ResetHealth();
+        playerStats.ResetScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void UpdateScore(int scoreToAdd)
+    private void UpdateScoreText(int score)
     {
-        score += scoreToAdd;
-        scoreText.text = $"SCORE: {score:D6}";
+        scoreText.text = $"SCORE: {score:D5}";
+    }
 
+    public void DecreaseCollectibleAmount()
+    {
         totalCollectibles--;
 
         if (totalCollectibles <= 0)
             NextLevel(nextLevelScene);
-
     }
 
     private void NextLevel(string level)
     {
-        SceneManager.LoadScene(level);
+        sceneFader.FadeTo(level);
     }
 
     public void GameOver()
@@ -77,23 +80,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
 
+        playerUI.SetActive(false);
+
         gameIsOver = true;
 
         gameOverUI.SetActive(true);
-
-        if (player.CurrentHealth > 0)
-            winText.SetActive(true);
-        else
-            loseText.SetActive(true);
     }
 
     private void OnEnable()
     {
-        Item.OnItemCollected += UpdateScore;
+        playerStats.OnScoreUpdate.AddListener(UpdateScoreText);
     }
 
     private void OnDisable()
     {
-        Item.OnItemCollected -= UpdateScore;
+        playerStats.OnScoreUpdate.RemoveListener(UpdateScoreText);
     }
 }
