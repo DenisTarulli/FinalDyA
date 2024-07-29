@@ -18,12 +18,16 @@ public class EnemyCombat : MonoBehaviour
     private int currentHealth;
     private bool isAttacking;
     private Transform playerPosition;
+    private EnemyHealthBar healthBar;
 
     private void Start()
     {
+        healthBar = GetComponent<EnemyHealthBar>();
         playerPosition = FindObjectOfType<PlayerCombat>().transform;
         animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
+
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
 
     private void Update()
@@ -41,6 +45,7 @@ public class EnemyCombat : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         currentHealth -= damageToTake;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -86,6 +91,8 @@ public class EnemyCombat : MonoBehaviour
     private void Die()
     {
         animator.SetTrigger("Die");
+
+        healthBar.enabled = false;
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

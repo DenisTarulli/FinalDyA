@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,14 +13,23 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
     private Animator animator;
-    private float currentHealth;
+    private int currentHealth;
     private float nextTimeToAttack;
 
     public static bool isAttacking;
 
-    private void Start()
+    public static event Action<float> OnHurt;
+
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
+    private void Awake()
     {
         currentHealth = maxHealth;
+    }
+
+    private void Start()
+    {
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -58,6 +68,8 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         currentHealth -= damageToTake;
+
+        OnHurt?.Invoke(currentHealth);
 
         if (currentHealth <= 0)
             Destroy(gameObject);

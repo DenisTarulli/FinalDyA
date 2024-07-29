@@ -145,7 +145,7 @@ MonoBehaviour:
   extraDelayUntilSpriteFlip: 0.17
   attackRange: 0.7
   maxHealth: 100
-  damage: 25
+  damage: 27
   attackPoint: {fileID: 8792393751218068363}
   enemyLayer:
     serializedVersion: 2
