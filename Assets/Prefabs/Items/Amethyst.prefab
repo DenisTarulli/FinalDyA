@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4581862640577052494}
   - component: {fileID: 8361640443629104297}
   - component: {fileID: 8163610986920815000}
+  - component: {fileID: -5499286407602937049}
   m_Layer: 0
   m_Name: Amethyst
   m_TagString: Untagged
@@ -100,6 +101,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5499286407602937049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453460181138455658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dddc2c083cb744a85914ae4c88aa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedEffect: {fileID: 5153815061406935337, guid: de246dcda3ca73a418cd18d1fcb6174b, type: 3}
+  collectedEffectDuration: 1
 --- !u!1 &4599263983733474638
 GameObject:
   m_ObjectHideFlags: 0

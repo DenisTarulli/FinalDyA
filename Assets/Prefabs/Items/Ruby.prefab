@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 529560229117604484}
   - component: {fileID: 5392411710723562172}
   - component: {fileID: 4089669433671665568}
+  - component: {fileID: 4370578017101594390}
   m_Layer: 0
   m_Name: Ruby
   m_TagString: Untagged
@@ -100,6 +101,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4370578017101594390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939375808087741451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dddc2c083cb744a85914ae4c88aa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedEffect: {fileID: 5153815061406935337, guid: de246dcda3ca73a418cd18d1fcb6174b, type: 3}
+  collectedEffectDuration: 1
 --- !u!1 &8500604358249992921
 GameObject:
   m_ObjectHideFlags: 0
