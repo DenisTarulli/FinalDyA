@@ -32,6 +32,9 @@ public class PlayerStatsScriptableObject : ScriptableObject
     {
         score += amount;
 
+        if (score < 0)
+            score = 0;
+
         OnScoreUpdate?.Invoke(score);
     }
 

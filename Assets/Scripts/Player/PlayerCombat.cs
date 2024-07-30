@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float extraDelayUntilSpriteFlip;
     [SerializeField] private float attackRange;
     [SerializeField] private int damage;
+    [SerializeField] private int scoreLostOnHit;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
     private Animator animator;
@@ -57,6 +58,7 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         playerStats.DecreaseHealth(damageToTake);
+        playerStats.IncreaseScore(-scoreLostOnHit);
 
         if (playerStats.currentHealth <= 0)
         {

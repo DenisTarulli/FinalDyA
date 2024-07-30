@@ -145,6 +145,7 @@ MonoBehaviour:
   extraDelayUntilSpriteFlip: 0.17
   attackRange: 0.7
   damage: 27
+  scoreLostOnHit: 120
   attackPoint: {fileID: 8792393751218068363}
   enemyLayer:
     serializedVersion: 2
