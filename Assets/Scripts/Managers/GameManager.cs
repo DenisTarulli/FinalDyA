@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerStatsScriptableObject playerStats;
 
     public bool gameIsOver;
+    private bool levelOver;
 
     private void Awake()
     {
@@ -72,11 +73,14 @@ public class GameManager : MonoBehaviour
 
     private void NextLevel(string level)
     {
+        levelOver = true;
         sceneFader.FadeTo(level);
     }
 
     public void GameOver()
     {
+        if (levelOver) return;
+
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
 
